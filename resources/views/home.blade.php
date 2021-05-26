@@ -2,7 +2,6 @@
 @section('content')
 
 <section class="w-full mt-10 max-w-sm p-6 m-auto bg-gray-100 rounded-md shadow-md">
-
     <form action="{{route('mail.store')}}" method="POST">
         @csrf
         <div>

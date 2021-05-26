@@ -32,6 +32,10 @@ class RegisterController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
         
+        // $user = User::create([
+                // ne pas oublier
+        // ]);
+        
         event(new Registered($user));
         Auth::login($user);
         return redirect()->route('profile.index')->with("success" , "Account created !");

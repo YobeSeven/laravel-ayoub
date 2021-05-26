@@ -20,11 +20,12 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
         
-        $user = User::where('email' , $request->email)->first();
+        $user = User::where('email' , $request->email)->first();  //[]
 
         if ($user) {
             if (Hash::check($request->password, $user->password)) {
                 Auth::login($user);
+                $request->session()->regenerate();
                 return redirect()->route('profile.index');
             } else {
                 return back()->with('fail' ,'wrong password');

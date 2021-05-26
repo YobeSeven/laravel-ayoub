@@ -9,6 +9,8 @@
 </head>
 <body>
     @include('frontend.contents.navbar')
+    @dump(Session::all())
+    @dump(Auth::check() )
     @yield('content')
     <script src={{asset('js/app.js')}}></script>
 </body>

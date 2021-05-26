@@ -27,6 +27,7 @@ class ResetForgotPasswordController extends Controller
         ->first();
 
         if (!$updatePassword) {
+                            //old
             return back()->withInput()->with('fail' , 'Invalid Token');
         } else {
 
