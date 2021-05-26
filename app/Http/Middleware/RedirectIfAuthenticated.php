@@ -26,7 +26,7 @@ class RedirectIfAuthenticated
                 return redirect()->route('home');
             }
         }
-
+        
         return $next($request);
     }
 }

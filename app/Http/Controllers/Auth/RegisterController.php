@@ -24,17 +24,13 @@ class RegisterController extends Controller
             'email'     => 'required|string|email|max:255|unique:users',
             'password'  => ['required', 'confirmed', Rules\Password::min(8)],
         ]);
-
-        $user = new User();
-        $user->name = $request->name;
-        $user->role_id = 3;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
-        $user->save();
         
-        // $user = User::create([
-                // ne pas oublier
-        // ]);
+        $user = User::create([
+            'name'      => $request->name,
+            'role_id'   =>  3,
+            'email'     => $request->email,
+            'password'  => Hash::make($request->password),
+        ]);
         
         event(new Registered($user));
         Auth::login($user);

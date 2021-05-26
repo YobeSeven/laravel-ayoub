@@ -16,11 +16,11 @@ class LoginController extends Controller
 
     public function store(Request $request){
         $request->validate([
-            'email' => 'required|string|email|max:255',
-            'password' => 'required',
+            'email'     => 'required|string|email|max:255',
+            'password'  => 'required',
         ]);
         
-        $user = User::where('email' , $request->email)->first();  //[]
+        $user = User::where('email' , $request->email)->first();
 
         if ($user) {
             if (Hash::check($request->password, $user->password)) {
