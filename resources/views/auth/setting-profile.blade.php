@@ -93,6 +93,19 @@
             </button>
         </form>
     </section>
+
+    <section class="w-full mt-10 max-w-sm p-6 m-auto bg-gray-100 rounded-md shadow-md">
+        <form action="{{route('setting-profile.updateProfile')}}" method="POST">
+            @csrf
+            @method('PUT')
+            <input type="hidden" name="deleteProfile" id="deleteProfile">
+            <div>
+                <label for="password">If you want to delete your account, Put ur Password</label>
+                <input type="password" name="password" id="password">
+            </div>
+            <button type="submit">DELETE</button>
+        </form>
+    </section>
     
 
 @endsection

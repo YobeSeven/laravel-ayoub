@@ -57,6 +57,14 @@ class SettingProfileController extends Controller
             } else {
                 return back()->with(`fail` , `ce n'est pas le bon mdp`);
             }
+            
+        } elseif ($request->has('deleteProfile')) {
+        // POUR SUPPRIMER LE COMPTE //
+            $checkPassword = Hash::check($request->password, $user->password);
+            if ($checkPassword) {
+                $user->delete();
+                return redirect()->route('home'); 
+            }
         }
     }
 }
