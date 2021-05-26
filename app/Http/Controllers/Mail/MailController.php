@@ -11,7 +11,7 @@ class MailController extends Controller
 {
     public function store(Request $request)
     {
-        Mail::to(`test@test.com`)->send(new MailSender($request));
+        Mail::to("test@test.com")->send(new MailSender($request));
         return redirect()->back();
     }
 
