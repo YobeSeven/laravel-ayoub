@@ -22,12 +22,11 @@ class ResetForgotPasswordController extends Controller
             'password'  => ['required', 'confirmed', Rules\Password::min(8)],
         ]);
 
-        $updatePassword = DB::table('password_resets')
+        $resetPassword = DB::table('password_resets')
         ->where(['email'=>$request->email , 'token'=>$request->token])
         ->first();
 
-        if (!$updatePassword) {
-                            //old
+        if (!$resetPassword) {
             return back()->withInput()->with('fail' , 'Invalid Token');
         } else {
 
