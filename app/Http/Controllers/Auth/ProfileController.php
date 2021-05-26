@@ -9,18 +9,18 @@ use Illuminate\Support\Facades\Auth;
 class ProfileController extends Controller
 {
     public function index(){
-        return view(`auth.profile`);
+        return view('auth.profile');
     }
 
     public function admin(){
-        return view(`backend.admin`);
+        return view('backend.admin');
     }
 
     public function logout(Request $request){
-        Auth::guard(`web`)->logout();
+        Auth::guard('web')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route(`home`);    
+        return redirect()->route('home');    
     }
 
 }

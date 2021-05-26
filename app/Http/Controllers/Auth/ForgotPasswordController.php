@@ -12,27 +12,27 @@ use Illuminate\Support\Str;
 class ForgotPasswordController extends Controller
 {
     public function index(){
-        return view(`auth.forgot-password`);
+        return view('auth.forgot-password');
     }
 
     public function store(Request $request){
         $request->validate([
-            `email` => `required|email|exists:users`
+            "email" => "required|email|exists:users"
         ]);
 
         $token = Str::random(64);
 
-        DB::table(`password_resets`)->insert(
-            [`email` => $request->email , `token` => $token , `created_at` => Carbon::now()]
+        DB::table("password_resets")->insert(
+            ["email" => $request->email , "token" => $token , "created_at" => Carbon::now()]
         );
 
-        Mail::send(`auth.email-verify-password`, [`token` => $token] , function ($message) use($request) {
+        Mail::send("auth.email-verify-password", ["token" => $token] , function ($message) use($request) {
             $message->to($request->email);
-            $message->from(`test@test.com`);
-            $message->subject(`Reset Password`);
+            $message->from("test@test.com");
+            $message->subject("Reset Password");
         });
         
-        return redirect()->back()->with(`success` , `We sent you an email with a link to reset password`);
+        return redirect()->back()->with("success" , "We sent you an email with a link to reset password");
     }
 
 }
