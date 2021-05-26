@@ -14,26 +14,26 @@ use Illuminate\Validation\Rules;
 class RegisterController extends Controller
 {
     public function index(){
-        return view('auth.register');
+        return view(`auth.register`);
     }
 
     public function store(Request $request){
     
         $request->validate([
-            'name'      => 'required|string|max:255',
-            'email'     => 'required|string|email|max:255|unique:users',
-            'password'  => ['required', 'confirmed', Rules\Password::min(8)],
+            `name`      => `required|string|max:255`,
+            `email`     => `required|string|email|max:255|unique:users`,
+            `password`  => [`required`, `confirmed`, Rules\Password::min(8)],
         ]);
         
         $user = User::create([
-            'name'      => $request->name,
-            'role_id'   =>  3,
-            'email'     => $request->email,
-            'password'  => Hash::make($request->password),
+            `name`      => $request->name,
+            `role_id`   =>  3,
+            `email`     => $request->email,
+            `password`  => Hash::make($request->password),
         ]);
         
         event(new Registered($user));
         Auth::login($user);
-        return redirect()->route('profile.index')->with("success" , "Account created !");
+        return redirect()->route(`profile.index`)->with(`success` , `Account created !`);
     }
 }

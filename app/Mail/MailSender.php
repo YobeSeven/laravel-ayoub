@@ -28,6 +28,6 @@ class MailSender extends Mailable
      */
     public function build()
     {
-        return $this->from($this->mail->mail)->view('mail.mail-from-user')->subject($this->mail->subject);    
+        return $this->from($this->mail->mail)->view(`mail.mail-from-user`)->subject($this->mail->subject);    
     }
 }
