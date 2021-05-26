@@ -100,10 +100,21 @@
             @method('PUT')
             <input type="hidden" name="deleteProfile" id="deleteProfile">
             <div>
-                <label for="password">If you want to delete your account, Put ur Password</label>
-                <input type="password" name="password" id="password">
+                <label for="password" class="mt-2">
+                    If you want to delete your account, Put ur Password
+                </label>
+                <input type="password" name="password" id="password"
+                class="w-full px-4 py-2 mt-2 border rounded-md">
+                @error('password_confirmation')
+                <span class="text-red">
+                    <strong>{{$message}}</strong>
+                </span>
+                @enderror
             </div>
-            <button type="submit">DELETE</button>
+            <button type="submit"
+            class="w-full px-4 py-2 mt-2 tracking-wide text-white bg-gray-700 rounded-md hover:bg-gray-600">
+                DELETE
+            </button>
         </form>
     </section>
     
