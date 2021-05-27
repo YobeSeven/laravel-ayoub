@@ -39,6 +39,15 @@ class SettingProfileController extends Controller
                 DB::table("users")->update([
                     "name"=>$request->name,
                 ]);
+            } else {
+                $request->validate([
+                    "email" => ["string","email","max:255"],
+                    "name"  => "string|max:255",
+                ]);
+                DB::table('users')->update([
+                    "email"=>$request->email,
+                    "name"=>$request->name,
+                ]);
             }
             return redirect()->back()->with("success" , "save done");
 
