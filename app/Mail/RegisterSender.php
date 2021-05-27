@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class MailSender extends Mailable
+class RegisterSender extends Mailable
 {
     use Queueable, SerializesModels;
     public $mail;
@@ -28,6 +28,6 @@ class MailSender extends Mailable
      */
     public function build()
     {
-        return $this->from($this->mail->mail)->view("mail.from-user")->subject($this->mail->subject);    
+        return $this->from('test@test.com')->view("mail.register")->subject("register");
     }
 }
