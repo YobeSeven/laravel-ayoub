@@ -109,7 +109,7 @@
                 </label>
                 <input type="password" name="password" id="password"
                 class="w-full px-4 py-2 mt-2 border rounded-md">
-                @error('password_confirmation')
+                @error('password')
                 <span class="text-red">
                     <strong>{{$message}}</strong>
                 </span>

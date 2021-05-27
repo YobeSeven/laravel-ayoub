@@ -25,8 +25,8 @@ class RoleSeeder extends Seeder
                 "created_at"    => now(),
             ],
             [
-                "role-name" => "user",
-                "created_at" => now(),
+                "role-name"     => "user",
+                "created_at"    => now(),
             ],
         ]);
     }
