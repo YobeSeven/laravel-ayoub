@@ -27,7 +27,7 @@ class SettingProfileController extends Controller
                 return back();
             } elseif ($request->name == null) {
                 $request->validate([
-                    "email" => ["string","email","max:255"]
+                    "email" => ["string","email","max:255","unique:users"]
                 ]);
                 DB::table("users")->update([
                     "email"=>$request->email,
@@ -41,7 +41,7 @@ class SettingProfileController extends Controller
                 ]);
             } else {
                 $request->validate([
-                    "email" => ["string","email","max:255"],
+                    "email" => ["string","email","max:255","unique:users"],
                     "name"  => "string|max:255",
                 ]);
                 DB::table('users')->update([
