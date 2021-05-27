@@ -19,8 +19,6 @@ class SettingProfileController extends Controller
     }
 
     public function updateProfile(Request $request){
-
-        $this->authorize('auth');
         
         $user = Auth::user();
 
@@ -30,7 +28,7 @@ class SettingProfileController extends Controller
                 return back();
             } elseif ($request->name == null) {
                 $request->validate([
-                    "email" => ["string","email","max:255",Rule::unique("users")->ignore($user->id)]
+                    "email" => ["string","email","max:255"]
                 ]);
                 DB::table("users")->update([
                     "email"=>$request->email,

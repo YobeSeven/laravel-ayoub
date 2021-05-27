@@ -34,7 +34,6 @@
             </label>
             <textarea name="message" id="message" cols="30" rows="10"
             class="w-full px-4 py-2 mt-2 border rounded-md">
-                {{old('message')}}
             </textarea>
             @error('message')
             <span class="text-red">

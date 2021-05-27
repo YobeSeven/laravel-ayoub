@@ -27,6 +27,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Blade::if('Admin', function () {
             return Auth::user()->role_id == 1;
-        }); 
+        });
     }
 }
