@@ -20,6 +20,8 @@ class SettingProfileController extends Controller
 
     public function updateProfile(Request $request){
 
+        $this->authorize('auth');
+        
         $user = Auth::user();
 
         if ($request->has("nameUpdate")) {
