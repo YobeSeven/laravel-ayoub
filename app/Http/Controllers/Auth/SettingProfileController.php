@@ -19,8 +19,6 @@ class SettingProfileController extends Controller
 
     public function updateProfile(Request $request){
         
-        $user = Auth::user();
-
         if ($request->has("nameUpdate")) { 
         // POUR LE NOM ET L"EMAIL //
             if ($request->name == null && $request->email == null) {
@@ -50,9 +48,12 @@ class SettingProfileController extends Controller
                 ]);
             }
             return redirect()->back()->with("success" , "save done");
-
-        } elseif ($request->has("passwordUpdate")) {
-        // POUR LE MOT DE PASSE //
+        } 
+    }
+    
+    public function updatePassword(Request $request){
+        $user = Auth::user();
+        if ($request->has("passwordUpdate")) {
             $checkPassword = Hash::check($request->current_password, $user->password);
             if ($checkPassword) {            
                 $request->validate([
@@ -65,16 +66,20 @@ class SettingProfileController extends Controller
             } else {
                 return back()->with("fail" , "wrong password");
             }
-            
-        } elseif ($request->has("deleteProfile")) {
-        // POUR SUPPRIMER LE COMPTE //
-            $checkPassword = Hash::check($request->password, $user->password);
-            if ($checkPassword) {
-                $user->delete();
-                return redirect()->route("home")->with("success" , "your account has been deleted"); 
-            } else {
-                return back()->with("fail" , "wrong password");
-            }
         }
     }
+
+    public function destroyProfile(Request $request){
+        $user = Auth::user();
+        if ($request->has("deleteProfile")) {
+            // POUR SUPPRIMER LE COMPTE //
+                $checkPassword = Hash::check($request->password, $user->password);
+                if ($checkPassword) {
+                    $user->delete();
+                    return redirect()->route("home")->with("success" , "your account has been deleted"); 
+                } else {
+                    return back()->with("fail" , "wrong password");
+                }
+            }
+        }    
 }

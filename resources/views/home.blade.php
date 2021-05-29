@@ -6,7 +6,7 @@
         @csrf
         <div>
             <label for="mail" class="mt-2">
-                E-mail
+                salut
             </label>
             <input type="email" id="mail" name="mail" value="{{old('mail')}}"
             class="w-full px-4 py-2 mt-2 border rounded-md">

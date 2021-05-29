@@ -47,7 +47,7 @@
         <h3 class="text-3xl font-semibold text-center text-gray-700">
             Change Password
         </h3>
-        <form action="{{route('setting-profile.updateProfile')}}" method="POST">
+        <form action="{{route('setting-profile.updatePassword')}}" method="POST">
             @csrf
             @method('PUT')
             <input type="hidden" name="passwordUpdate" id="passwordUpdate">
@@ -99,9 +99,9 @@
             Delete Account
         </h3>
 
-        <form action="{{route('setting-profile.updateProfile')}}" method="POST">
+        <form action="{{route('setting-profile.destroy')}}" method="POST">
             @csrf
-            @method('PUT')
+            @method('DELETE')
             <input type="hidden" name="deleteProfile" id="deleteProfile">
             <div>
                 <label for="password" class="mt-2">

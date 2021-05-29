@@ -49,3 +49,5 @@ Route::post('forgot-password',[ForgotPasswordController::class , 'store'])->name
 Route::post('reset-forgot-password',[ResetForgotPasswordController::class , 'store'])->name('reset-forgot-password.store');
 Route::post('send/email',[MailController::class , 'store'])->name('mail.store');
 Route::put('update/profile',[SettingProfileController::class , 'updateProfile'])->name('setting-profile.updateProfile');
+Route::put('update/password',[SettingProfileController::class , 'updatePassword'])->name('setting-profile.updatePassword');
+Route::delete('delete/profile',[SettingProfileController::class , 'destroyProfile'])->name('setting-profile.destroy');
