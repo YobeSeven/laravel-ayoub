@@ -50,7 +50,7 @@ class SettingProfileController extends Controller
             return redirect()->back()->with("success" , "save done");
         } 
     }
-    
+
     public function updatePassword(Request $request){
         $user = Auth::user();
         if ($request->has("passwordUpdate")) {
@@ -73,13 +73,13 @@ class SettingProfileController extends Controller
         $user = Auth::user();
         if ($request->has("deleteProfile")) {
             // POUR SUPPRIMER LE COMPTE //
-                $checkPassword = Hash::check($request->password, $user->password);
-                if ($checkPassword) {
-                    $user->delete();
-                    return redirect()->route("home")->with("success" , "your account has been deleted"); 
-                } else {
-                    return back()->with("fail" , "wrong password");
-                }
+            $checkPassword = Hash::check($request->password, $user->password);
+            if ($checkPassword) {
+                $user->delete();
+                return redirect()->route("home")->with("success" , "your account has been deleted"); 
+            } else {
+                return back()->with("fail" , "wrong password");
             }
-        }    
+        }
+    }    
 }

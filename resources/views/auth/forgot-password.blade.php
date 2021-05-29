@@ -14,7 +14,7 @@
             <input type="email" name="email" id="email" value="{{old('email')}}"
             class="w-full px-4 py-2 mt-2 border rounded-md">
             @error('email')
-            <span class="text-red">
+            <span class="text-red-400">
                 <strong>{{$message}}</strong>
             </span>
             @enderror

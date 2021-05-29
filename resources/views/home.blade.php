@@ -6,12 +6,12 @@
         @csrf
         <div>
             <label for="mail" class="mt-2">
-                salut
+                E-mail
             </label>
             <input type="email" id="mail" name="mail" value="{{old('mail')}}"
             class="w-full px-4 py-2 mt-2 border rounded-md">
             @error('mail')
-            <span class="text-red">
+            <span class="text-red-400">
                 <strong>{{$message}}</strong>
             </span>
             @enderror
@@ -23,7 +23,7 @@
             <input type="text" id="subject" name="subject" value="{{old('subject')}}"
             class="w-full px-4 py-2 mt-2 border rounded-md">
             @error('subject')
-            <span class="text-red">
+            <span class="text-red-400">
                 <strong>{{$message}}</strong>
             </span>
             @enderror
@@ -36,7 +36,7 @@
             class="w-full px-4 py-2 mt-2 border rounded-md">
             </textarea>
             @error('message')
-            <span class="text-red">
+            <span class="text-red-400">
                 <strong>{{$message}}</strong>
             </span>
             @enderror
