@@ -27,25 +27,23 @@ class SettingProfileController extends Controller
                 $request->validate([
                     "email" => ["string","email","max:255","unique:users"]
                 ]);
-                DB::table("users")->update([
-                    "email"=>$request->email,
-                ]);
+                Auth::user()->email = $request->email;
+                Auth::user()->save();
+
             } elseif ($request->email == null) {
                 $request->validate([
                     "name"  => "string|max:255",
                 ]);
-                DB::table("users")->update([
-                    "name"=>$request->name,
-                ]);
+                Auth::user()->name = $request->name;
+                Auth::user()->save();
             } else {
                 $request->validate([
                     "email" => ["string","email","max:255","unique:users"],
                     "name"  => "string|max:255",
                 ]);
-                DB::table('users')->update([
-                    "email"=>$request->email,
-                    "name"=>$request->name,
-                ]);
+                Auth::user()->name = $request->name;
+                Auth::user()->email = $request->email;
+                Auth::user()->save();
             }
             return redirect()->back()->with("success" , "save done");
         } 
@@ -59,9 +57,8 @@ class SettingProfileController extends Controller
                 $request->validate([
                     "password"=> ["required", "confirmed", Rules\Password::min(8)]
                 ]);
-                DB::table("users")->update([
-                    "password"=>Hash::make($request->password)
-                ]);
+                Auth::user()->password = Hash::make($request->password);
+                Auth::user()->save();
                 return redirect()->back()->with("success" , "save done");
             } else {
                 return back()->with("fail" , "wrong password");
@@ -70,12 +67,11 @@ class SettingProfileController extends Controller
     }
 
     public function destroyProfile(Request $request){
-        $user = Auth::user();
         if ($request->has("deleteProfile")) {
             // POUR SUPPRIMER LE COMPTE //
-            $checkPassword = Hash::check($request->password, $user->password);
+            $checkPassword = Hash::check($request->password, Auth::user()->password);
             if ($checkPassword) {
-                $user->delete();
+                Auth::user()->delete();
                 return redirect()->route("home")->with("success" , "your account has been deleted"); 
             } else {
                 return back()->with("fail" , "wrong password");
